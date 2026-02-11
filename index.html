@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Villa Onar | Modern Greek Escape</title>
+    <!-- Preload Hero Image with fetchpriority=high and a responsive width hint -->
+    <link rel="preload" as="image" href="https://drive.google.com/thumbnail?id=1uoYOwBqHg-DIBN-OT9VeRLUs-KzqJ0AZ&sz=w1200" fetchpriority="high" />
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://drive.google.com" />
+    <link rel="dns-prefetch" href="https://esm.sh" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                '-apple-system',
+                'BlinkMacSystemFont',
+                '"Segoe UI"',
+                'Roboto',
+                'Helvetica',
+                'Arial',
+                'sans-serif',
+              ],
+            },
+            colors: {
+              apple: {
+                dark: '#1d1d1f',
+                gray: '#f5f5f7',
+                light: '#fbfbfd',
+                blue: '#0071e3',
+                blueHover: '#0077ed'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Ensure text remains visible during font load */
+      html { font-display: swap; }
+      
+      /* Utility to hide scrollbar for clean carousels */
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      body {
+        background-color: #ffffff;
+        color: #1d1d1f;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      /* Performance: Skip rendering for off-screen sections */
+      section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px;
+      }
+      #hero {
+        content-visibility: visible;
+      }
+
+      /* Apple-style Reveal Animations - Optimized with will-change */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1.2s cubic-bezier(0.5, 0, 0, 1), transform 1.2s cubic-bezier(0.5, 0, 0, 1);
+        will-change: transform, opacity;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 1.2s cubic-bezier(0.5, 0, 0, 1), transform 1.2s cubic-bezier(0.5, 0, 0, 1);
+        will-change: transform, opacity;
+      }
+      .reveal-left.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 1.2s cubic-bezier(0.5, 0, 0, 1), transform 1.2s cubic-bezier(0.5, 0, 0, 1);
+        will-change: transform, opacity;
+      }
+      .reveal-right.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Staggered Items */
+      .stagger-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        will-change: transform, opacity;
+      }
+      .stagger-item.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Cinematic Ken Burns Effect */
+      @keyframes kenBurns {
+        0% { transform: scale(1.0); }
+        50% { transform: scale(1.08); }
+        100% { transform: scale(1.0); }
+      }
+      .animate-ken-burns {
+        animation: kenBurns 20s ease-in-out infinite;
+      }
+
+      /* Special entrance for Hero - Enhanced Zoom Out */
+      @keyframes heroEntrance {
+        from { 
+          opacity: 0; 
+          transform: scale(1.15);
+        }
+        to { 
+          opacity: 1; 
+          transform: scale(1); 
+        }
+      }
+      .animate-hero-image {
+        animation: heroEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        will-change: transform, opacity;
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-up {
+        animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+
+      /* Lightbox Transitions */
+      @keyframes slideFadeInRight {
+        from { opacity: 0; transform: translateX(40px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes slideFadeInLeft {
+        from { opacity: 0; transform: translateX(-40px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .animate-slide-right {
+        animation: slideFadeInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .animate-slide-left {
+        animation: slideFadeInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .animate-fade-in {
+        animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      /* Subtle gradient pulse for loading states */
+      @keyframes pulseLight {
+        0% { background-color: #f5f5f7; }
+        50% { background-color: #e8e8ed; }
+        100% { background-color: #f5f5f7; }
+      }
+      .animate-pulse-light {
+        animation: pulseLight 2s ease-in-out infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "lucide-react": "https://esm.sh/lucide-react@0.469.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
